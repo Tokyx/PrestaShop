@@ -1758,6 +1758,15 @@ class AdminImportControllerCore extends AdminController
 				if (isset($product->delete_existing_images))
 					if ((bool)$product->delete_existing_images)
 						$product->deleteImages();
+						
+						
+				//Link sending images to Product object		
+				$info['image']=explode(',', $info['image']);
+				foreach ($info['image'] as $image) {
+					if(trim($image)) {
+						array_push($product->image, $image);
+					}
+				}
 
 				if (isset($product->image) && is_array($product->image) && count($product->image))
 				{
